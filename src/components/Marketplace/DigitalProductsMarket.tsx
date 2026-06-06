@@ -94,7 +94,7 @@ const mockProducts = [
   }
 ];
 
-export function DigitalProductsMarket() {
+export function DigitalProductsMarket({ onAddToCart }: { onAddToCart?: (item: any) => void }) {
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row gap-4">
@@ -142,7 +142,16 @@ export function DigitalProductsMarket() {
 
               <div className="mt-auto flex items-center justify-between pt-4 border-t border-secondary-100">
                  <p className="text-xl font-black text-secondary-900">{product.price}</p>
-                 <button className="flex items-center gap-2 bg-secondary-900 hover:bg-black text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                 <button 
+                  onClick={() => onAddToCart && onAddToCart({
+                    id: `dig-${product.id}`,
+                    title: product.title,
+                    price: Number(product.price.replace(/[^0-9.-]+/g, "")),
+                    image: product.image,
+                    vendor: product.author
+                  })} 
+                  className="flex items-center gap-2 bg-secondary-900 hover:bg-black text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                 >
                     <ShoppingCart className="w-4 h-4" />
                     Add
                  </button>

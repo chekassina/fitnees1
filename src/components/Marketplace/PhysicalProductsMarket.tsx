@@ -86,7 +86,7 @@ const inventory = [
   }
 ];
 
-export function PhysicalProductsMarket() {
+export function PhysicalProductsMarket({ onAddToCart }: { onAddToCart?: (item: any) => void }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
@@ -159,7 +159,16 @@ export function PhysicalProductsMarket() {
 
               <div className="mt-auto flex items-center justify-between">
                 <span className="font-black text-xl text-secondary-900">{item.price}</span>
-                <button className="bg-secondary-900 hover:bg-black text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center gap-2">
+                <button 
+                  onClick={() => onAddToCart && onAddToCart({
+                    id: `phys-${item.id}`,
+                    title: item.name,
+                    price: Number(item.price.replace(/[^0-9.-]+/g, "")),
+                    image: item.image,
+                    vendor: item.vendor
+                  })} 
+                  className="bg-secondary-900 hover:bg-black text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center gap-2"
+                >
                   <ShoppingCart className="w-4 h-4" />
                   Add
                 </button>
