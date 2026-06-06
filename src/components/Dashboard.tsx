@@ -13,10 +13,10 @@ import { cn } from '../lib/utils';
 
 const features = [
   {
-    title: "Trainer & Nutritionist Hub",
-    description: "Manage certified professionals, personal training sessions, and diet programs.",
-    icon: Users,
-    route: "/marketplace/trainers",
+    title: "Global Marketplace",
+    description: "Connect to the broader fitness network. Browse trainers, physical products, and digital programs.",
+    icon: Globe,
+    route: "/marketplace",
     featured: true,
   },
   {

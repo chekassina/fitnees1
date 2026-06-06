@@ -31,7 +31,7 @@ const navItems = [
   { name: 'Subscriptions', route: '/subscriptions', icon: IdCard },
   { name: 'Orders', route: '/orders', icon: Package },
   { name: 'Customers', route: '/customers', icon: Users },
-  { name: 'Vendors', route: '/vendors', icon: Store },
+  { name: 'Store', route: '/store', icon: Store },
   { name: 'Reviews & Ratings', route: '/reviews', icon: Activity },
   { name: 'Loyalty Program', route: '/loyalty', icon: Apple },
   { name: 'Advertisements', route: '/ads', icon: Megaphone },

@@ -3,14 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Dashboard } from './components/Dashboard';
 import { MarketplaceHub } from './components/Marketplace/MarketplaceHub';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
+import { PhysicalProductsMarket } from './components/Marketplace/PhysicalProductsMarket';
+import { StorePage } from './pages/StorePage';
 import { AuthProvider, useAuth } from './lib/AuthContext';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -27,7 +29,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
 
-  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/store';
 
   if (isAuthRoute) {
     return <>{children}</>;
@@ -58,6 +60,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
+function StoreWrapper() {
+  const navigate = useNavigate();
+  return <StorePage fromDashboard={true} onBack={() => navigate('/')} />;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -66,6 +73,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/marketplace/*" element={<ProtectedRoute><MarketplaceHub /></ProtectedRoute>} />
+            <Route path="/store" element={<ProtectedRoute><StoreWrapper /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
