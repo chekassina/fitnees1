@@ -1,0 +1,6 @@
+{
+  "name": "Fitness Marketplace Platform",
+  "description": "A comprehensive digital ecosystem connecting fitness enthusiasts with trainers, nutritionists, vendors, and wellness professionals in a single marketplace. Features multi-vendor management, digital products, and subscriptions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
